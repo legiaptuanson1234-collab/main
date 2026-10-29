@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-10-29 (đêm 2) — Kiến trúc kiếm tiền (0đ, không bịa doanh thu)
+
+- [x] **Sản phẩm số gốc**: "Prompt &amp; Template Kit" (6 file tiếng Việt: công thức 3 phần, 30 mẫu prompt học tập + công việc, checklist chọn công cụ miễn phí, hướng dẫn 10 phút) — nội dung biên tập gốc, có quyền phân phối.
+- [x] Nút tải **hoạt động thật**: prebuild đóng gói `public/downloads/prompt-kit.zip` (jszip, build fail nếu thiếu file) + trang `/product/` (CTA trên trang chủ + menu điều hướng).
+- [x] **Affiliate-ready (không bịa)**: `tools.json` thêm 2 trường tuỳ chọn `affiliateUrl`/`affiliateProgram`; khi điền, trang /tools/ tự gắn nhãn "liên kết đối tác" + disclosure; khi chưa có = link thường. Trang /affiliates/ ghi rõ quy trình 5 bước bật affiliate thật.
+- [x] PREMIUM SLOT: `product.json` (premium.enabled=false) — chỉ cần bạn đặt 1 link Gumroad/Stripe + giá là nút "Mua bản nâng cao" hiện. Không có checkout giả.
+- [ ] Chưa có: doanh thu (chưa có traffic/chưa có chương trình affiliate) — mọi số "doanh thu" vẫn đánh dấu chưa xác minh.
+
 ## 2026-10-29 (đêm) — Deploy công khai + sửa hệ thống subpath
 
 - [x] Push repo lên GitHub: `github.com/legiaptuanson1234-collab/main` (5 commits, xác minh qua API).

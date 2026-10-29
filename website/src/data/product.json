@@ -1,0 +1,19 @@
+{
+  "product": "Sổ Tay AI — Prompt & Template Kit (tiếng Việt)",
+  "version": "1.0",
+  "updatedAt": "2026-10-29",
+  "license": "Dùng miễn phí cho mục đích cá nhân. Không bán lại nguyên văn bộ kit.",
+  "freeDownload": {
+    "enabled": true,
+    "filename": "prompt-kit.zip",
+    "whatYouGet": "6 file: docs đầu, công thức 3 phần, 30 mẫu prompt (học tập + công việc), checklist chọn công cụ miễn phí, hướng dẫn 10 phút đầu.",
+    "sizeNote": "dưới 50 KB, mở được bằng Word/Notepad/TXT."
+  },
+  "premium": {
+    "enabled": false,
+    "url": "",
+    "price": "",
+    "provider": "gumroad",
+    "note": "Chưa có. Khi bật: điền url (Gumroad/Stripe) + price; hệ thống tự hiển thị nút mua thật. Không làm checkout giả."
+  }
+}

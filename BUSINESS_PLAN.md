@@ -33,8 +33,10 @@ Thang 100 điểm theo prompt: Nhu cầu (20), Sản phẩm hữu ích (20), Kh�
 **Lý do thắng:**
 - Nhu cầu thật, được xác nhận bởi thị trường quốc tế; góc tiếng Việt ít cạnh tranh hơn (hàng rào: chất lượng + cập nhật).
 - Sản phẩm hữu ích ngay khi không có traffic (công cụ tìm kiếm danh bạ + hướng dẫn dùng được ngay).
-- Chi phí 0đ: site tĩnh trên Cloudflare Pages, nội dung sản xuất bằng Ollama cục bộ, không API trả phí.
-- Đường doanh thu rõ: affiliate chương trình AI (định kỳ, trung vị ~30% theo nguồn trên — **sẽ chỉ kích hoạt link thật sau khi đăng ký được**); dài hạn: bộ tài liệu số (prompt templates) do chính hệ thống tạo ra và có quyền bán.
+- Chi phí 0đ: site tĩnh trên GitHub Pages (deploy tự động), nội dung sản xuất bằng Ollama cục bộ, không API trả phí.
+- **Đường doanh thu (sắp xếp theo thứ tự ưu tiên, tất cả 0đ chi phí ban đầu):**
+  1. *Sản phẩm số (đã triển khai ngay):* "Prompt &amp; Template Kit" — nội dung gốc do chính hệ thống biên tập (không sao chép, có quyền phân phối), **bản miễn phí tải về được thật** ở trang /product/ (dẫn lưu lượng + tạo uy tín). Bản nâng cao (nếu có) chỉ kích hoạt qua 1 link thanh toán thật (Gumroad/Stripe) — **không làm checkout giả, không cam kết giá khi chưa có**.
+  2. *Affiliate công cụ AI (cơ chế sẵn sàng, chờ đăng ký thật):* mỗi công cụ trong `tools.json` có trường tuỳ chọn `affiliateUrl` + `affiliateProgram`; khi điền, trang /tools/ tự động gắn nhãn "liên kết đối tác" + disclosure. Chỉ bật sau khi đăng ký chương trình và được chấp thuận (trung vị hoa hồng ~30% theo nguồn — *chưa xác minh từng chương trình*).
 
 **Khách hàng mục tiêu:** người dùng Việt Nam tuổi 16–35, biết dùng máy tính, chưa có kinh nghiệm AI, không muốn trả phí (học sinh/sinh viên, người mới đi làm, chủ shop nhỏ).
 

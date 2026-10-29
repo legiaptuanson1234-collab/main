@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib';
+import product from '../data/product.json';
+import type { ProductConfig } from '../types';
+
+const p = product as unknown as ProductConfig;
+const zipPath = href('/downloads/' + p.freeDownload.filename);
+const hasFree = p.freeDownload.enabled;
+const hasPremium = p.premium.enabled && p.premium.url !== '';
+---
+<Base title="Prompt & Template Kit tiếng Việt — Sổ Tay AI" description="Tải miễn phí bộ 30 mẫu prompt + công thức 3 phần + checklist chọn công cụ AI miễn phí. Dùng được ngay cho học tập và công việc.">
+  <section class="page product">
+    <div class="prod-hero">
+      <h1>{p.product}</h1>
+      <p class="meta">Phiên bản {p.version} · Cập nhật {p.updatedAt}</p>
+
+      <p>{p.freeDownload.whatYouGet}</p>
+
+      {hasFree && (
+        <div class="actions">
+          <a class="primary" href={zipPath} download={p.freeDownload.filename}>
+            Tải miễn phí (zip, {p.freeDownload.sizeNote})
+          </a>
+        </div>
+      )}
+
+      <p class="note">
+        <strong>Giấy phép:</strong> {p.license}
+      </p>
+
+      {hasPremium ? (
+        <div class="premium">
+          <h2>Bản nâng cao</h2>
+          <p>{p.premium.price && `Giá: ${p.premium.price}.`}</p>
+          <a class="primary" href={p.premium.url} target="_blank" rel="sponsored nofollow noopener">
+            Mua bản nâng cao ({p.premium.provider})
+          </a>
+        </div>
+      ) : (
+        <div class="premium muted">
+          <h2>Bản nâng cao</h2>
+          <p>
+            Chưa có. Bản miễn phí trên đã bao gồm đầy đủ 30 mẫu prompt. Khi có thêm nội dung
+            cao cấp, trang này sẽ cập nhật nút mua.
+          </p>
+        </div>
+      )}
+    </div>
+
+    <div class="toc prose">
+      <h2>Có gì trong bộ kit</h2>
+      <ol>
+        <li><strong>Công thức 3 phần</strong> — viết prompt để AI trả lời đúng ý lần đầu.</li>
+        <li><strong>30 mẫu prompt sẵn dùng</strong> — học tập (15) + công việc (15), copy &amp; điền.</li>
+        <li><strong>Checklist chọn công cụ AI miễn phí</strong> — tránh các bẫy "free" ẩn phí.</li>
+        <li><strong>Hướng dẫn 10 phút đầu tiên</strong> — bắt đầu với ChatGPT/Gemini không cần thẻ.</li>
+      </ol>
+      <p>
+        Nếu bạn muốn dùng các công cụ trong danh mục, xem <a href={href('/tools/')}>danh bạ công cụ</a>
+        và <a href={href('/guides/')}>các hướng dẫn</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .product { max-width: 46rem; }
+  .prod-hero { border-bottom: 2px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+  .premium { margin-top: 1.5rem; padding: 1rem; background: var(--card); border-radius: 10px; }
+  .premium.muted { opacity: 0.75; }
+  .toc { margin-top: 1rem; }
+</style>

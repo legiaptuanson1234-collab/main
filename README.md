@@ -88,6 +88,18 @@ Xem `DEPLOYMENT.md` (Cloudflare Pages) và `AUTOMATION.md` (Task Scheduler) cho 
 
 Script bật/tắt tự động hoá: `automation/enable-task.ps1` / `automation/disable-task.ps1` — xem `AUTOMATION.md`.
 
+## Kiếm tiền (0đ ban đầu, không bịa doanh thu)
+
+| Dòng | Trạng thái | Bạn cần làm |
+|---|---|---|
+| **Bộ Prompt & Template Kit** (sản phẩm số) | 🟢 Bản miễn phí tải về được thật (`/product/`) | Bật bản premium: sửa `website/src/data/product.json` → `premium.enabled=true`, `url` (Gumroad/Stripe), `price`; build + push. Không làm checkout giả. |
+| **Affiliate công cụ AI** | 🟡 Cơ chế sẵn, chưa bật | Đăng ký 1–2 chương trình thật (canva/…) → được chấp thuận → thêm `affiliateUrl`+`affiliateProgram` vào `tools.json` cho đúng công cụ → build + push. Nhãn "liên kết đối tác" + disclosure hiện tự động. |
+| Analytics | ⚪ Chưa bật | Settings → Pages → bật Web Analytics (GitHub Pages, free). |
+
+**Nguyên tắc (tuân thủ Phần 11 prompt gốc):** không bịa link affiliate, không đăng ký bằng thông tin giả, không khoe doanh thu khi chưa có thật. Trang `/affiliates/` ghi rõ quy trình.
+
+## Deploy (GitHub Pages — đã cấu hình, tự chạy khi push)
+
 ## An toàn (đọc trước khi dùng chế độ publish)
 
 - Mặc định **draft**: AI không tự công bố gì. Chỉ khi chạy `--mode publish` và bản nháp vượt qua reviewer (JSON: pass=true, score≥60) pipeline mới ghi bài vào `website/src/content/guides/`.

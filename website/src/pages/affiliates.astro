@@ -6,19 +6,47 @@ import Base from '../layouts/Base.astro';
     <h1>Công khai quan hệ đối tác</h1>
     <p>
       Cam kết của website: <strong>trước khi có bất kỳ đường link nào mang hoa hồng,
-      trang này phải được cập nhật</strong> nêu rõ chương trình, cách kiếm tiền,
-      và (nếu có) lợi ích kèm theo cho người dùng.
+      trang này và trang <a href="/tools/">danh bạ</a> phải được cập nhật</strong> nêu rõ
+      chương trình, cách kiếm tiền, và (nếu có) lợi ích kèm theo cho người dùng.
     </p>
 
     <h2>Trạng thái hiện tại</h2>
-    <p>Hiện tại <strong>chưa có</strong> chương trình affiliate nào đang hoạt động trên website này. Không có đường link nào trong site đang đặt hoa hồng. Các liên kết "sponsored" hiện tại (nếu có) chỉ dùng để ghi nhận nguồn, không phải đối tác đang ký hợp đồng.</p>
+    <p>
+      Hiện tại <strong>chưa có</strong> chương trình affiliate nào đang hoạt động trên website này.
+      Không có đường link nào trong site đang đặt hoa hồng. Các liên kết "sponsored" hiện tại (nếu có)
+      chỉ dùng để ghi nhận nguồn, không phải đối tác đang ký hợp đồng.
+    </p>
+    <p>
+      <strong>Cơ chế kỹ thuật đã sẵn sàng:</strong> mỗi công cụ trong <code>tools.json</code> có thể
+      được thêm 2 trường <code>affiliateUrl</code> (link hoa hồng thật) và <code>affiliateProgram</code>
+      (tên chương trình). Khi có 2 trường này, trang danh bạ tự động: (1) trỏ link tới
+      <code>affiliateUrl</code> với <code>rel="sponsored"</code>, (2) hiện nhãn "liên kết đối tác" cạnh
+      tên công cụ, (3) hiện dòng công khai trên trang. Không có trường nào = link thường, không nhãn —
+      nên không thể "gắn nhầm" nhãn đối tác khi chưa có chương trình thật.
+    </p>
 
-    <h2>Khi nào sẽ có (và các cam kết đi kèm)</h2>
+    <h2>Quy trình bật affiliate (làm đúng thứ tự)</h2>
+    <ol>
+      <li>Đăng ký chương trình của 1–2 công cụ trong danh bạ (ví dụ: chương trình đối tác của Canva, Jasper…) — cần <strong>email thật</strong> và (nhiều chương trình) site có traffic tối thiểu. Không đăng ký bằng thông tin giả.</li>
+      <li>Được chấp thuận → lấy link affiliate của bạn.</li>
+      <li>Ghi vào <code>website/src/data/tools.json</code>: thêm <code>"affiliateUrl"</code> + <code>"affiliateProgram"</code> cho đúng công cụ (mẫu trong file).</li>
+      <li>Build + push (GitHub tự deploy). Kiểm tra nhãn + disclosure hiện đúng.</li>
+      <li>Đóng dấu ngày trong CHANGELOG; theo dõi click ở bảng điều khiển chương trình (đơn vị trả hoa hồng cung cấp).</li>
+    </ol>
+
+    <h2>Các cam kết cố định</h2>
     <ul>
       <li>Chỉ dùng link của chương trình đã được <strong>chấp thuận chính thức</strong> — không tự tạo link giả hay khẳng định quan hệ đối tác chưa tồn tại.</li>
-      <li>Ghi rõ "liên kết đối tác" ngay cạnh link khi đó có hoa hồng.</li>
+      <li>Ghi rõ "liên kết đối tác" ngay cạnh link khi đó có hoa hồng (cơ chế tự động, xem trên).</li>
       <li>Thứ hạng công cụ trong danh bạ dựa trên tiêu chí công khai (miễn phí thật, phù hợp mục đích), <strong>không phải mức hoa hồng</strong>.</li>
       <li>Không dùng dữ liệu người dùng cho bất kỳ mục đích nào ngoài việc hiển thị nội dung.</li>
     </ul>
+
+    <h2>Dòng doanh thu thứ hai (sản phẩm số)</h2>
+    <p>
+      Website có trang <a href="/product/">Bộ Prompt &amp; Template Kit</a> (bản miễn phí tải về được ngay).
+      Bản nâng cao (nếu có) chỉ kích hoạt khi có link thanh toán thật (Gumroad/Stripe) của người vận hành —
+      không có checkout giả, không cam kết giá. Chi tiết trong <code>BUSINESS_PLAN.md</code> của repo mã nguồn.
+    </p>
   </section>
 </Base>

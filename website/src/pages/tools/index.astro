@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import toolsData from '../../data/tools.json';
 import type { Tool } from '../../types';
+import { href } from '../../lib';
 
 const tools = toolsData as unknown as Tool[];
 const categories = [
@@ -15,6 +16,8 @@ const categories = [
   { id: 'code', label: 'Lập trình' },
   { id: 'other', label: 'Chạy local / khác' },
 ];
+const hasAffiliate = tools.some((t) => t.affiliateUrl);
+const affDisc = href('/affiliates/');
 ---
 <Base title="Danh bạ công cụ AI miễn phí (không cần thẻ) — Sổ Tay AI" description="Bộ lọc nhanh: chat, tra cứu, viết lách, hình ảnh, âm thanh, code, chạy trên máy. Ghi rõ giới hạn của bản free và ngày kiểm tra.">
   <section class="page">
@@ -23,6 +26,12 @@ const categories = [
       <strong>Quy tắc của danh bạ này:</strong> chỉ gắn nhãn "miễn phí" khi đã xác minh có chế độ dùng không cần thẻ.
       Chỗ chưa xác minh được sẽ ghi <span class="badge warn">Chưa xác minh</span> — không đánh đồng với "free".
     </p>
+    {hasAffiliate && (
+      <p class="note">
+        <strong>Công khai:</strong> một số link dưới đây là liên kết đối tác (đặt nhãn <em>liên kết đối tác</em> / tên chương trình).
+        Chi tiết xem tại <a href={affDisc}>trang công khai quan hệ đối tác</a>.
+      </p>
+    )}
 
     <div class="filters" role="search" aria-label="Lọc công cụ">
       <input id="q" type="search" placeholder="Tìm theo tên hoặc chức năng…" aria-label="Tìm công cụ" />
@@ -106,11 +115,20 @@ const categories = [
       a.className = 'card';
       const h = document.createElement('h3');
       const link = document.createElement('a');
-      link.href = t.url;
+      // Affiliate-ready: chỉ dùng affiliateUrl khi có (đã đăng ký thật).
+      // Không có -> link gốc, rel=noopener, không gắn nhãn "đối tác" (không bịa quan hệ).
+      const isAff = Boolean(t.affiliateUrl);
+      link.href = isAff ? t.affiliateUrl : t.url;
       link.target = '_blank';
-      link.rel = 'sponsored nofollow noopener';
+      link.rel = isAff ? 'sponsored nofollow noopener' : 'noopener';
       link.textContent = t.name;
       h.appendChild(link);
+      if (isAff) {
+        const tag = document.createElement('span');
+        tag.className = 'badge';
+        tag.textContent = t.affiliateProgram || 'liên kết đối tác';
+        h.appendChild(tag);
+      }
       const p1 = document.createElement('p');
       p1.textContent = t.descriptionVi;
       const p2 = document.createElement('p');
