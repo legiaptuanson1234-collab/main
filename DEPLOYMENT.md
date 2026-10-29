@@ -40,7 +40,8 @@ Actions chỉ lo build/deploy website khi có commit mới.
 
 ## Trạng thái hiện tại
 
-- [x] Push repo lên GitHub: 3 commits (mới nhất `ea18b77`), xác minh qua API.
-- [ ] Bật Pages (chọn Cách 1 hoặc 2 ở trên) — **chờ bạn bấm 1–5 bước**.
-- [ ] Xác minh URL công khai (sau khi Pages build xong) rồi ghi lại vào CHANGELOG.
-- [ ] Analytics: bật Web Analytics (Cloudflare) hoặc đếm view Pages — ghi kết quả thật vào CHANGELOG.
+- [x] Push repo lên GitHub: 5 commits (mới nhất `e065bf5`), xác minh qua API.
+- [x] Bật Pages (Cách 1, GitHub Actions) — URL công khai: **https://legiaptuanson1234-collab.github.io/main/**
+- [x] Xác minh URL công khai: `tools/verify-public.mjs` đạt **9/9** (trang chủ, /tools/ filter, /guides/, bài UTF-8, sitemap-index, sitemap đúng domain, robots, RSS, 404).
+- [x] CI (build+test) và Deploy Pages đều **green** cho commit mới nhất.
+- [ ] Analytics: chưa bật. Cách 1 (GitHub Pages): tab Settings → Pages → "Web analytics" (có sẵn, free). Cách 2 (Cloudflare): bật Web Analytics trong project. Ghi kết quả thật vào CHANGELOG khi có.

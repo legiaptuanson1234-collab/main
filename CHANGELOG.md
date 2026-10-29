@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 2026-10-29 (đêm) — Deploy công khai + sửa hệ thống subpath
+
+- [x] Push repo lên GitHub: `github.com/legiaptuanson1234-collab/main` (5 commits, xác minh qua API).
+- [x] Bật GitHub Pages (Source: GitHub Actions) → **URL công khai hoạt động: https://legiaptuanson1234-collab.github.io/main/**
+- [x] Sửa lỗi subpath (site chạy ở `/main/`, không phải gốc domain): thêm `BASE_PATH` cho Astro, helper `href()` cho mọi link nội bộ, sửa robots/sitemap/RSS/favicon → build + test thật (không có double-prefix `/main/main/`).
+- [x] Workflow `deploy-pages.yml`: tự build + publish mỗi lần push (mặc định dùng BASE_PATH theo tên repo; đổi tên repo là vẫn hoạt động).
+- [x] CI xanh: sửa typo tên file test trong workflow + mock provider trả JSON theo vai trò (dry-run/draft mock exit 0).
+- [x] Kiểm chứng công khai: **9/9** (trang chủ, /tools/ filter+data, /guides/, bài hướng dẫn UTF-8, sitemap-index, sitemap đúng domain, robots, RSS, 404) — script `tools/verify-public.mjs`.
+- [ ] Analytics: chưa bật (Cloudflare Web Analytics cần Cloudflare; hoặc dùng GitHub Pages web analytics — ghi nhận khi có).
+
 ## 2026-10-29 — Khởi tạo hệ thống
 
 ### Website (Sổ Tay AI)
