@@ -1,22 +1,25 @@
 ---
+import { href } from '../lib';
+
 const nav = [
-  { href: '/', label: 'Trang chủ' },
-  { href: '/tools/', label: 'Danh bạ công cụ' },
-  { href: '/guides/', label: 'Hướng dẫn' },
-  { href: '/about/', label: 'Giới thiệu' },
-  { href: '/contact/', label: 'Liên hệ' },
+  { to: '/', label: 'Trang chủ' },
+  { to: '/tools/', label: 'Danh bạ công cụ' },
+  { to: '/guides/', label: 'Hướng dẫn' },
+  { to: '/about/', label: 'Giới thiệu' },
+  { to: '/contact/', label: 'Liên hệ' },
 ];
+const here = Astro.url.pathname;
 ---
 <header class="site-header" role="banner">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="Sổ Tay AI — trang chủ">
+    <a class="brand" href={href('/')} aria-label="Sổ Tay AI — trang chủ">
       <span class="brand-mark" aria-hidden="true">📖</span>
       <span class="brand-name">Sổ Tay AI</span>
     </a>
     <nav aria-label="Điều hướng chính">
       <ul class="nav-list">
         {nav.map((n) => (
-          <li><a href={n.href} aria-current={Astro.url.pathname === n.href ? 'page' : undefined}>{n.label}</a></li>
+          <li><a href={href(n.to)} aria-current={here === n.to ? 'page' : undefined}>{n.label}</a></li>
         ))}
       </ul>
     </nav>
@@ -27,10 +30,10 @@ const nav = [
   .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; }
   .brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.15rem; }
   .brand-mark { font-size: 1.3rem; }
-  .nav-list { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
-  .nav-list a { font-size: 0.95rem; }
+  .nav-list { display: flex; gap: 1rem; font-size: 0.95rem; }
+  .nav-list a { text-decoration: none; }
   .nav-list a[aria-current='page'] { font-weight: 700; color: var(--accent); }
   @media (max-width: 640px) {
-    .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
   }
 </style>

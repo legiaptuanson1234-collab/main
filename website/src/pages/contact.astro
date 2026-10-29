@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { href } from '../lib';
 ---
 <Base title="Liên hệ — Sổ Tay AI" description="Ghi ý kiến, báo lỗi nội dung, hoặc đề xuất công cụ/hướng dẫn cần thêm.">
   <section class="page prose">
@@ -12,7 +13,7 @@ import Base from '../layouts/Base.astro';
 
     <h2>Cách phản hồi (hiện tại)</h2>
     <ul>
-      <li><strong>GitHub:</strong> mở Issue tại repository mã nguồn (xem hướng dẫn trong <a href="/about/">trang giới thiệu</a> sau khi repo công khai).</li>
+      <li><strong>GitHub:</strong> mở Issue tại repository mã nguồn (xem hướng dẫn trong <a href={href('/about/')}>trang giới thiệu</a> sau khi repo công khai).</li>
       <li><strong>Email:</strong> chưa có — sẽ cập nhật khi có kênh tiếp nhận ổn định.</li>
     </ul>
 
@@ -25,7 +26,7 @@ import Base from '../layouts/Base.astro';
 
     <p class="note">
       <strong>Ghi chú:</strong> Chúng tôi không thu thập dữ liệu cá nhân qua các kênh trên.
-      Nếu bạn gửi thông tin cá nhân, xin vui lòng đọc <a href="/privacy/">chính sách quyền riêng tư</a>.
+      Nếu bạn gửi thông tin cá nhân, xin vui lòng đọc <a href={href('/privacy/')}>chính sách quyền riêng tư</a>.
     </p>
   </section>
 </Base>

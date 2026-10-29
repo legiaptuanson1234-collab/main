@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { href } from '../lib';
 ---
 <Base title="Không tìm thấy trang — Sổ Tay AI" noindex>
   <section class="page notfound">
@@ -7,9 +8,9 @@ import Base from '../layouts/Base.astro';
       <h1>Trang này không tồn tại (404)</h1>
       <p>Đường dẫn bạn mở không có trên website — có thể bài viết đã đổi tên hoặc liên kết bị lỗi.</p>
       <div class="actions">
-        <a class="primary" href="/">Về trang chủ</a>
-        <a href="/tools/">Danh bạ công cụ</a>
-        <a href="/guides/">Các hướng dẫn</a>
+        <a class="primary" href={href('/')}>Về trang chủ</a>
+        <a href={href('/tools/')}>Danh bạ công cụ</a>
+        <a href={href('/guides/')}>Các hướng dẫn</a>
       </div>
     </div>
   </section>

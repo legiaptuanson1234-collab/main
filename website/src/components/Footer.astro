@@ -1,12 +1,13 @@
 ---
+import { href } from '../lib';
 ---
 <footer class="site-footer" role="contentinfo">
   <div class="container">
-    <p><strong>Sổ Tay AI</strong> — thông tin do đội ngũ biên tập viên AI hỗ trợ tạo và kiểm tra. Chi tiết phương pháp xem ở trang <a href="/about/">Giới thiệu</a>.</p>
+    <p><strong>Sổ Tay AI</strong> — thông tin do đội ngũ biên tập viên AI hỗ trợ tạo và kiểm tra. Chi tiết phương pháp xem ở trang <a href={href('/about/')}>Giới thiệu</a>.</p>
     <nav aria-label="Chân trang">
-      <a href="/privacy/">Quyền riêng tư</a>
-      <a href="/terms/">Điều khoản</a>
-      <a href="/affiliates/">Cộng tác (affiliate)</a>
+      <a href={href('/privacy/')}>Quyền riêng tư</a>
+      <a href={href('/terms/')}>Điều khoản</a>
+      <a href={href('/affiliates/')}>Cộng tác (affiliate)</a>
     </nav>
     <p class="fine">© {new Date().getFullYear()} Sổ Tay AI · Nội dung dùng miễn phí, cập nhật khi có thể.</p>
   </div>

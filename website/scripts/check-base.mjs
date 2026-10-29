@@ -1,0 +1,11 @@
+import { readFileSync } from 'node:fs';
+const b = 'E:/KIEMTIEN/website/dist/';
+const nav = readFileSync(b + 'index.html', 'utf8');
+console.log('=== index.html: các href nội bộ (nên có /main/) ===');
+[...new Set((nav.match(/href="\/[^"]*"/g) || []).map((x) => x.slice(6, -1)))].slice(0, 12).forEach((h) => console.log('  ', h));
+console.log('=== sitemap-0.xml (đầu) ===');
+[...new Set((readFileSync(b + 'sitemap-0.xml', 'utf8').match(/<loc>([^<]+)<\/loc>/g) || []))].slice(0, 4).forEach((x) => console.log('  ', x.replace(/<\/?loc>/g, '')));
+console.log('=== robots.txt ===');
+console.log(readFileSync(b + 'robots.txt', 'utf8'));
+console.log('=== favicon/feed link (nên có /main/) ===');
+[...new Set((nav.match(/(href|src)="\/[^"]*\.(svg|xml)"/g) || []))].forEach((x) => console.log('  ', x));

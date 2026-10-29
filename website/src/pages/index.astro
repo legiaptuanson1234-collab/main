@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import toolsData from '../data/tools.json';
 import type { Tool } from '../types';
+import { href } from '../lib';
 
 const tools = toolsData as unknown as Tool[];
 const sample = tools.filter((t) => t.freeTier === 'yes' || t.freeTier === 'limited').slice(0, 6);
@@ -15,8 +16,8 @@ const sample = tools.filter((t) => t.freeTier === 'yes' || t.freeTier === 'limit
         rồi bắt đầu làm được việc ngay — viết lách, tra cứu, học tập, code, làm ảnh.
       </p>
       <div class="actions">
-        <a class="primary" href="/tools/">Xem danh bạ công cụ</a>
-        <a href="/guides/">Đọc hướng dẫn</a>
+        <a class="primary" href={href('/tools/')}>Xem danh bạ công cụ</a>
+        <a href={href('/guides/')}>Đọc hướng dẫn</a>
       </div>
       <p class="note">
         Mọi công cụ trong danh bạ đều ghi rõ <strong>ngày kiểm tra</strong> và <strong>giới hạn của bản free</strong>.
@@ -39,15 +40,15 @@ const sample = tools.filter((t) => t.freeTier === 'yes' || t.freeTier === 'limit
         </article>
       ))}
     </div>
-    <p><a href="/tools/">→ Xem toàn bộ {tools.length} công cụ và bộ lọc</a></p>
+    <p><a href={href('/tools/')}>→ Xem toàn bộ {tools.length} công cụ và bộ lọc</a></p>
   </section>
 
   <section class="page" aria-labelledby="why">
     <h2 id="why">Vì sao nên đọc các hướng dẫn ở đây trước?</h2>
     <div class="prose">
       <p>Nhiều người bị "ngâm" ở bước đầu: không biết cái nào thực sự miễn phí, cái nào chỉ miễn phí cho đến khi tự động trừ tiền, và bắt đầu bằng prompt kiểu gì để ra kết quả dùng được.</p>
-      <p>Các bài hướng dẫn ở mục <a href="/guides/">Hướng dẫn</a> được viết để bạn <strong>làm được ngay</strong>: mở đúng link, đăng nhập đúng cách, và tạo ra 1 kết quả cụ thể (1 bài viết, 1 bảng so sánh, 1 bộ slide…) trước khi lo chuyện chi trả. Khi nào cần mở rộng, chúng tôi mới gợi ý gói trả phí — và chỉ khi nào phù hợp với bạn.</p>
-      <p>Mọi phương án tạo doanh thu của site (nếu có sau này, ví dụ affiliate) được <a href="/affiliates/">công khai tại đây</a>.</p>
+      <p>Các bài hướng dẫn ở mục <a href={href('/guides/')}>Hướng dẫn</a> được viết để bạn <strong>làm được ngay</strong>: mở đúng link, đăng nhập đúng cách, và tạo ra 1 kết quả cụ thể (1 bài viết, 1 bảng so sánh, 1 bộ slide…) trước khi lo chuyện chi trả. Khi nào cần mở rộng, chúng tôi mới gợi ý gói trả phí — và chỉ khi nào phù hợp với bạn.</p>
+      <p>Mọi phương án tạo doanh thu của site (nếu có sau này, ví dụ affiliate) được <a href={href('/affiliates/')}>công khai tại đây</a>.</p>
     </div>
   </section>
 </Base>

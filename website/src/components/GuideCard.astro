@@ -1,5 +1,6 @@
 ---
 import type { Guide } from '../types';
+import { href } from '../lib';
 
 type Props = { guide: Guide };
 const { guide } = Astro.props;
@@ -7,10 +8,11 @@ const statusLabel = guide.data.status === 'published' ? 'Đã xuất bản' : 'N
 const aiLabel = guide.data.aiLabel === 'human' ? 'Biên tập viên'
   : guide.data.aiLabel === 'ai-assisted' ? 'AI hỗ trợ, biên tập viên kiểm tra'
   : 'AI tạo, biên tập viên kiểm tra';
+const articlePath = `/guides/${guide.data.slug ?? guide.id}/`;
 ---
 <article class="card">
   <span class="badge {guide.data.status === 'published' ? 'ok' : 'warn'}">{statusLabel}</span>
-  <h3><a href={`/guides/${guide.data.slug ?? guide.id}/`}>{guide.data.title}</a></h3>
+  <h3><a href={href(articlePath)}>{guide.data.title}</a></h3>
   <p>{guide.data.description}</p>
   <p class="meta">
     {aiLabel} · Cập nhật {guide.data.lastVerified}

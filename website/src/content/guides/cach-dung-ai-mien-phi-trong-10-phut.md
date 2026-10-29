@@ -35,7 +35,7 @@ Bạn không cần thẻ tín dụng, không cần hiểu thuật toán, và kh�
 
 ## Bước 2 — Tạo tài khoản và bắt đầu (3 phút)
 
-1. Mở link ở bảng trên (link trong <a href="/tools/">danh bạ công cụ</a> của chúng tôi, kiểm tra lần cuối từng mục).
+1. Mở link ở bảng trên (link trong [danh bạ công cụ](../tools/) của chúng tôi, kiểm tra lần cuối từng mục).
 2. Đăng ký bằng email hoặc tài khoản Google/Microsoft bạn đã có. **Đừng nhập thẻ** — các dịch vụ ở bước này không yêu cầu thẻ để dùng bản free.
 3. Vào giao diện chat và đặt câu hỏi đầu tiên.
 

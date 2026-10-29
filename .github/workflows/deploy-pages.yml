@@ -27,12 +27,14 @@ jobs:
           node-version: 24
           cache: npm
           cache-dependency-path: website/package-lock.json
-      - name: Build (SITE_URL của GitHub Pages)
+      - name: Build (SITE_URL + BASE_PATH của GitHub Pages)
         working-directory: website
         run: |
           npm ci
           npm config set progress=false
-          SITE_URL="https://legiaptuanson1234-collab.github.io/main/" npm run build
+          BASE_PATH="/$(basename ${{ github.repository }})/" \
+          SITE_URL="https://${{ github.repository_owner }}.github.io/$(basename ${{ github.repository }})/" \
+          npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: website/dist
