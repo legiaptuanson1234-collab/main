@@ -4,7 +4,7 @@
 import { existsSync, readFileSync, writeFileSync, unlinkSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { OllamaProvider, MockProvider, type LlmProvider } from './provider.ts';
+import { OllamaProvider, type LlmProvider } from './provider.ts';
 import { Pipeline, type Mode } from './pipeline.ts';
 import { TOPICS, nextTopic } from './topics.ts';
 
@@ -85,7 +85,25 @@ async function main() {
 
   let provider: LlmProvider;
   if (mock) {
-    provider = new MockProvider('# Bản nháp mock\nĐây là nội dung mock có đủ độ dài để vượt ngưỡng 300 ký tự, dùng cho kiểm thử pipeline không cần Ollama: ' + 'x'.repeat(400));
+    // Mock "có kịch bản" theo vai trò: writer trả text (đủ dài), reviewer/seo trả JSON
+    // hợp lệ — đủ để pipeline (kể cả publish) chạy trọn vẹn mà không cần Ollama.
+    // Dùng cho CI (GitHub Actions) và kiểm thử local.
+    provider = {
+      name: 'mock',
+      async isAvailable() {
+        return true;
+      },
+      async generate(prompt: string) {
+        if (prompt.includes('BÀI NHÁP CẦN KIỂM TRA')) {
+          return JSON.stringify({ pass: true, score: 85, issues: [], fixes: [] });
+        }
+        if (prompt.includes('Sửa/đề xuất metadata SEO')) {
+          return JSON.stringify({ titleOk: true, metaDesc: 'Meta description mock (150-160 ký tự) cho kiểm thử pipeline không cần Ollama.', h1: 'Mock H1', internalLinks: ['/tools/'], notes: 'mock' });
+        }
+        // Writer
+        return '# Bản nháp mock (không cần Ollama)\n\nĐây là nội dung mock có đủ độ dài để vượt ngưỡng 300 ký tự, dùng cho kiểm thử pipeline: ' + 'x'.repeat(400) + '\n\n## Bước 1\nLàm việc A.\n\n## Bước 2\nLàm việc B (liên kết nội bộ [tại đây](/tools/)).\n\n## Tóm tắt\n- x\n- y\n';
+      },
+    } as LlmProvider;
   } else {
     const p = new OllamaProvider(env.OLLAMA_URL || 'http://127.0.0.1:11434', env.OLLAMA_MODEL || 'qwen2.5:7b', Number(env.OLLAMA_TIMEOUT_MS || 600000));
     if (!(await p.isAvailable())) {
