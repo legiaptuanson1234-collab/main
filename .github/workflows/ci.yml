@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 24
       - name: Test pipeline (mock, không cần Ollama)
-        run: node --test pipeline/test/
+        run: node --test pipeline/test/pipeline.test.tspipeline.test.ts
       - name: Dry-run với mock (bằng chứng pipeline không crash, không bịa)
         run: node pipeline/src/cli.ts --topic cach-viet-prompt --mode dry-run --mock
       - name: Chạy draft mock vào CI sandbox

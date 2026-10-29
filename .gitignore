@@ -9,12 +9,13 @@ website/.env
 !.env.example
 !website/.env.example
 
-# --- Ollama runtime (model, home directory — nặng, không thuộc mã nguồn) ---
+# --- Ollama runtime (binary, model, log — không thuộc mã nguồn; tải bằng tools/download-ollama.ps1) ---
+tools/ollama/ollama.exe
+tools/ollama/lib/
 tools/ollama/models/
 tools/ollama/server.log
 tools/ollama/server.err
 tools/ollama/ollama.zip
-tools/ollama/lib/
 
 # --- Pipeline runtime ---
 pipeline/.lock

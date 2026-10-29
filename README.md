@@ -52,7 +52,7 @@ node scripts/verify.mjs
 node scripts/check-tools.mjs
 
 cd ..
-node --test pipeline/test/   # test suite pipeline
+node --test pipeline/test/pipeline.test.ts   # test suite pipeline
 ```
 
 ## Biến môi trường (pipeline)
