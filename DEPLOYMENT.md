@@ -1,45 +1,46 @@
-# Triển khai website (Cloudflare Pages — miễn phí)
+# Triển khai website (miễn phí)
 
-Website là **site tĩnh** (Astro, output `website/dist/`). Triển khai lên Cloudflare Pages:
+Website là **site tĩnh** (Astro, output `website/dist/`). Có 2 con đường free, chọn 1:
 
-- Free tier hiện tại: 500 build/tháng, bandwidth không giới hạn (kiểm tra lại chính sách tại
-  https://www.cloudflare.com/pages/ trước khi dùng — chưa xác minh thay đổi mới).
-- Không cần backend, không phát sinh hoá đơn, không cần thẻ.
+## Cách 1 — GitHub Pages (nhanh nhất, ~2 phút, chỉ 1 lần bấm)
 
-## Lần triển khai đầu tiên (làm 1 lần, cần bạn đăng nhập)
+Repo: `github.com/legiaptuanson1234-collab/main` (public, 0đ).
 
-Agent không thể đăng nhập Cloudflare thay bạn (thao tác xác thực của con người). Quy trình:
+1. Vào repo trên GitHub → tab **Settings** → mục **Pages** (cột bên trái).
+2. Mục "Build and deployment" → **Source**: chọn **GitHub Actions**.
+3. Chờ 1–3 phút. Workflow `.github/workflows/deploy-pages.yml` tự:
+   - `npm ci` + `npm run build` với `SITE_URL=https://legiaptuanson1234-collab.github.io/main/`
+   (sitemap/robots/canonical tự trỏ đúng URL công khai),
+   - publish `website/dist/`.
+4. URL công khai: `https://legiaptuanson1234-collab.github.io/main/`
+   - Kiểm tra: mở URL đó, click `/tools/` (filter chạy), `/guides/`, mở `sitemap-index.xml`, `robots.txt`.
+   - Từ đó trở đi, mỗi lần `git push` vào `main` (kể cả khi pipeline publish nội dung mới)
+     website **tự build + deploy lại** — không cần thao tác gì thêm.
 
-1. Tạo/đăng nhập [pages.cloudflare.com](https://pages.cloudflare.com) (mục Pages, không phải Workers).
-2. Chọn **Create project → Connect to Git** (nếu có repo GitHub) hoặc **Direct Upload**:
-   - Direct Upload (nhanh nhất cho giai đoạn này): upload thư mục `website/dist/`.
-   - Project name: `so-tay-ai` → URL: `so-tay-ai.pages.dev` (hoặc tên bạn chọn).
-   - Build command: *(để trống khi Direct Upload; khi dùng Git thì `npm run build`)*
-   - Root directory: `website` (khi dùng Git); output: `dist`
-3. Sau khi build xong, mở `https://<tên>.pages.dev` — kiểm tra:
-   - Trang chủ, `/tools/` (bộ lọc chạy được, 18 công cụ hiển thị), `/guides/` (3 bài),
-   - `sitemap-index.xml`, `robots.txt` (chỉ trỏ đúng domain công khai), `guides/feed.xml`.
-4. **Cập nhật lại `website/.env`** với `SITE_URL=https://<tên>.pages.dev` rồi build lại,
-   vì canonical/sitemap/robots dùng biến này.
+Lưu ý: tên thư mục site của Pages theo tên repo (`/main/`). Nếu sau này đổi tên repo,
+đổi lại hằng `SITE_URL` trong `deploy-pages.yml` và config Pages cho khớp.
 
-## Triển khai lại sau khi có nội dung mới
+## Cách 2 — Cloudflare Pages (giữ làm dự phòng, cần 5 bước bấm)
 
-```powershell
-cd website
-# Sửa SITE_URL trong .env nếu cần
-npm run build
-# Cách 1 (nhanh): trong dashboard Pages, nút "Direct Upload" upload lại thư mục dist/
-# Cách 2 (Git, sau khi có repo): git add -A; git commit -m "content: ..."; git push  → Pages tự build
-```
+1. Dashboard Pages → **Create project → Connect to Git** (GitHub) → chọn repo `main`.
+   (Nếu chưa connect GitHub với Cloudflare: "Connect GitHub" rồi authorize app.)
+2. Build command: `npm run build` · Root: `website` · Output: `dist`.
+3. Environment variable (Public, chỉ dùng cho build): `SITE_URL=https://<ten>.pages.dev`
+   (URL thực được hệ thống gán sau lần build đầu — build lần đầu có thể còn `localhost`,
+   điền `SITE_URL` rồi "Build" lại 1 lần nữa).
+4. Kiểm tra: `/tools/`, `/guides/`, `sitemap-index.xml`, `robots.txt` trỏ đúng domain.
+5. Bật **Web Analytics** (trên chính project) để đo traffic thật — free, không code.
 
-## Kiểm tra sau deploy (bắt buộc trước khi coi là "đã công khai")
+## Vì sao KHÔNG dùng GitHub Actions để gọi Ollama
 
-- `curl -I https://<tên>.pages.dev/` phải trả `200`.
-- Kiểm tra 1 link nội bộ trong bài hướng dẫn (không 404).
-- `robots.txt` trỏ đúng Sitemap (không phải localhost).
+Ollama chạy cục bộ trên máy bạn. GitHub Actions (cloud) không với tới được nó
+trừ khi mở port Ollama ra Internet — **chúng ta không làm việc đó** (SECURITY.md).
+Tự động hoá nội dung do **Task Scheduler trên máy** đảm nhiệm (AUTOMATION.md);
+Actions chỉ lo build/deploy website khi có commit mới.
 
-## Bật analytics (bước kế tiếp, vẫn miễn phí)
+## Trạng thái hiện tại
 
-Cloudflare **Web Analytics**: trong dashboard Pages, bật "Web Analytics" (không cần thêm code,
-không cookie, free). Sau đó xem được lượt truy cập thật → thay cho phần "chưa có analytics"
-trong `ARCHITECTURE.md`. Ghi kết quả vào `CHANGELOG.md`.
+- [x] Push repo lên GitHub: 3 commits (mới nhất `ea18b77`), xác minh qua API.
+- [ ] Bật Pages (chọn Cách 1 hoặc 2 ở trên) — **chờ bạn bấm 1–5 bước**.
+- [ ] Xác minh URL công khai (sau khi Pages build xong) rồi ghi lại vào CHANGELOG.
+- [ ] Analytics: bật Web Analytics (Cloudflare) hoặc đếm view Pages — ghi kết quả thật vào CHANGELOG.

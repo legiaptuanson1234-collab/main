@@ -1,0 +1,49 @@
+# Tự động build + deploy website lên GitHub Pages mỗi khi push vào main.
+# YÊU CẦU 1 LẦN (bạn làm, ~10 giây): Settings → Pages → Source: chọn "GitHub Actions".
+# Sau đó workflow này tự build (npm ci + build với SITE_URL của GitHub Pages) và publish.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - name: Build (SITE_URL của GitHub Pages)
+        working-directory: website
+        run: |
+          npm ci
+          npm config set progress=false
+          SITE_URL="https://legiaptuanson1234-collab.github.io/main/" npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
