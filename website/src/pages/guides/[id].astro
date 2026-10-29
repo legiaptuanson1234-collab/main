@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const guides = await getCollection('guides', (g) => g.data.status === 'published');
+  return guides.map((g) => ({ params: { id: g.data.slug ?? g.id } }));
+};
+
+const guides = await getCollection('guides', (g) => g.data.status === 'published');
+const id = Astro.params.id as string;
+const guide = guides.find((g) => (g.data.slug ?? g.id) === id);
+
+if (!guide) {
+  return new Response('Không tìm thấy hướng dẫn này.', { status: 404 });
+}
+
+const { Content } = await render(guide);
+---
+<Base
+  title={`${guide.data.title} — Sổ Tay AI`}
+  description={guide.data.description}
+>
+  <article class="page guide-article">
+    <header>
+      <h1>{guide.data.title}</h1>
+      <p class="meta">
+        <span class="badge ok">Đã xuất bản</span>
+        {guide.data.aiLabel !== 'human' && <span class="badge">Nội dung do AI hỗ trợ, biên tập viên kiểm tra</span>}
+        · Cập nhật {guide.data.lastVerified}
+      </p>
+      {guide.data.verificationNote && (
+        <p class="note warn-note"><strong>Cần bạn kiểm tra lại:</strong> {guide.data.verificationNote}</p>
+      )}
+    </header>
+
+    <div class="article-content prose">
+      <Content />
+    </div>
+
+    {guide.data.sources.length > 0 && (
+      <footer class="sources">
+        <h2>Nguồn tham khảo</h2>
+        <ul>
+          {guide.data.sources.map((s) => (
+            <li><a href={s.url} rel="noopener" target="_blank">{s.title}</a></li>
+          ))}
+        </ul>
+      </footer>
+    )}
+  </article>
+</Base>
+
+<style>
+  .guide-article { max-width: 46rem; }
+  .warn-note { border-left-color: var(--warn); }
+  .sources { margin-top: 2.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .article-content h2 { scroll-margin-top: 2rem; }
+</style>

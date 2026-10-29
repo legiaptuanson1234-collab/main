@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+const today = new Date().toISOString().slice(0, 10);
+---
+<Base title="Chính sách quyền riêng tư — Sổ Tay AI" noindex>
+  <section class="page prose">
+    <h1>Chính sách quyền riêng tư</h1>
+    <p class="note"><strong>Phiên bản {today}.</strong> Văn bản mẫu, phạm vi áp dụng: site tĩnh không thu thập dữ liệu cá nhân. Cần người vận hành rà soát lại trước khi công bố chính thức nếu có thay đổi tính năng.</p>
+
+    <h2>1. Dữ liệu chúng tôi thu thập</h2>
+    <p>Ở thời điểm hiện tại, website <strong>không thu thập thông tin cá nhân</strong> của người truy cập: không có tài khoản, không có form nhập dữ liệu, không có cookie theo dõi cá nhân, không có công cụ phân tích lưu nhận dạng.</p>
+
+    <h2>2. Dữ liệu do trình duyệt lưu (không do chúng tôi đặt)</h2>
+    <p>Trình duyệt của bạn có thể tự lưu cookie/session của chính nó (không phải do website đặt). Chúng tôi không kiểm soát và không tiếp cận phần này.</p>
+
+    <h2>3. Liên kết tới bên thứ ba</h2>
+    <p>Danh bạ chứa liên kết tới các dịch vụ AI. Khi bạn dùng dịch vụ đó, chính sách quyền riêng tư của <em>từng dịch vụ</em> áp dụng cho bạn. Chúng tôi không đại diện cho họ. <strong>Không nhập dữ liệu nhạy cảm (mật khẩu, số thẻ, số định danh) vào các khung chat AI.</strong></p>
+
+    <h2>4. Nếu sau này có form liên hệ / phân tích</h2>
+    <p>Mọi tính năng mới thu thập dữ liệu sẽ được mô tả rõ tại đây (dữ liệu gì, lưu bao lâu, ai được xem, cách xoá) <strong>trước khi</strong> tính năng đó được bật.</p>
+
+    <h2>5. Trách nhiệm của bạn</h2>
+    <p>Bạn chịu trách nhiệm với dữ liệu bạn tự nhập vào các dịch vụ bên thứ ba. Chúng tôi khuyến nghị không chia sẻ thông tin định danh cá nhân trong nội dung hỏi AI.</p>
+  </section>
+</Base>

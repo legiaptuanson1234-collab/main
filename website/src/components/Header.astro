@@ -1,0 +1,36 @@
+---
+const nav = [
+  { href: '/', label: 'Trang chủ' },
+  { href: '/tools/', label: 'Danh bạ công cụ' },
+  { href: '/guides/', label: 'Hướng dẫn' },
+  { href: '/about/', label: 'Giới thiệu' },
+  { href: '/contact/', label: 'Liên hệ' },
+];
+---
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Sổ Tay AI — trang chủ">
+      <span class="brand-mark" aria-hidden="true">📖</span>
+      <span class="brand-name">Sổ Tay AI</span>
+    </a>
+    <nav aria-label="Điều hướng chính">
+      <ul class="nav-list">
+        {nav.map((n) => (
+          <li><a href={n.href} aria-current={Astro.url.pathname === n.href ? 'page' : undefined}>{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header { border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; }
+  .brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.15rem; }
+  .brand-mark { font-size: 1.3rem; }
+  .nav-list { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; }
+  .nav-list a { font-size: 0.95rem; }
+  .nav-list a[aria-current='page'] { font-weight: 700; color: var(--accent); }
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  }
+</style>

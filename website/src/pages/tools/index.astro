@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+import toolsData from '../../data/tools.json';
+import type { Tool } from '../../types';
+
+const tools = toolsData as unknown as Tool[];
+const categories = [
+  { id: 'all', label: 'Tất cả' },
+  { id: 'chat', label: 'Chat / hỏi đáp' },
+  { id: 'search', label: 'Tra cứu' },
+  { id: 'writing', label: 'Viết lách / học tập' },
+  { id: 'image', label: 'Hình ảnh' },
+  { id: 'video', label: 'Video' },
+  { id: 'audio', label: 'Âm thanh' },
+  { id: 'code', label: 'Lập trình' },
+  { id: 'other', label: 'Chạy local / khác' },
+];
+---
+<Base title="Danh bạ công cụ AI miễn phí (không cần thẻ) — Sổ Tay AI" description="Bộ lọc nhanh: chat, tra cứu, viết lách, hình ảnh, âm thanh, code, chạy trên máy. Ghi rõ giới hạn của bản free và ngày kiểm tra.">
+  <section class="page">
+    <h1>Danh bạ công cụ AI miễn phí</h1>
+    <p class="note">
+      <strong>Quy tắc của danh bạ này:</strong> chỉ gắn nhãn "miễn phí" khi đã xác minh có chế độ dùng không cần thẻ.
+      Chỗ chưa xác minh được sẽ ghi <span class="badge warn">Chưa xác minh</span> — không đánh đồng với "free".
+    </p>
+
+    <div class="filters" role="search" aria-label="Lọc công cụ">
+      <input id="q" type="search" placeholder="Tìm theo tên hoặc chức năng…" aria-label="Tìm công cụ" />
+      <div id="cats" class="chip-row"></div>
+    </div>
+
+    <div id="result-count" class="meta" aria-live="polite"></div>
+    <div id="grid" class="grid"></div>
+    <div id="empty" hidden>
+      <h2>Không có công cụ nào khớp</h2>
+      <p>Thử xoá bớt từ khoá hoặc đổi danh mục. Danh bạ có <span id="total-count"></span> công cụ.</p>
+      <button id="reset" type="button">Xoá bộ lọc</button>
+    </div>
+  </section>
+
+  <script type="module" define:vars={{ tools, categories }}>
+    const catEl = document.getElementById('cats')!;
+    const qEl = document.getElementById('q') as HTMLInputElement;
+    const grid = document.getElementById('grid')!;
+    const empty = document.getElementById('empty')!;
+    const count = document.getElementById('result-count')!;
+    const totalEl = document.getElementById('total-count')!;
+    totalEl.textContent = String(tools.length);
+
+    let activeCat = 'all';
+
+    categories.forEach((c: { id: string; label: string }) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = c.label;
+      b.dataset.cat = c.id;
+      b.setAttribute('aria-pressed', String(c.id === 'all'));
+      b.onclick = () => {
+        activeCat = c.id;
+        catEl.querySelectorAll('button').forEach((x) =>
+          (x as HTMLElement).setAttribute('aria-pressed', String(x.dataset.cat === c.id))
+        );
+        render();
+      };
+      catEl.appendChild(b);
+    });
+
+    qEl.addEventListener('input', render);
+    document.getElementById('reset')!.onclick = () => {
+      qEl.value = ''; activeCat = 'all';
+      catEl.querySelectorAll('button').forEach((x, i) => (x as HTMLElement).setAttribute('aria-pressed', String(i === 0)));
+      render();
+    };
+
+    function render() {
+      const q = qEl.value.trim().toLowerCase();
+      const items = tools.filter((t: Tool) => {
+        const okCat = activeCat === 'all' || t.category === activeCat;
+        const hay = [t.name, t.descriptionVi, t.bestForVi ?? ''].join(' ').toLowerCase();
+        return okCat && (!q || hay.includes(q));
+      });
+      count.textContent = `${items.length} / ${tools.length} công cụ`;
+      grid.innerHTML = '';
+      items.forEach((t: Tool) => grid.appendChild(card(t)));
+      empty.hidden = items.length !== 0;
+      grid.toggleAttribute('hidden', items.length === 0);
+    }
+
+    function badge(t: Tool) {
+      const map: Record<string, [string, string]> = {
+        yes: ['Miễn phí', 'ok'],
+        limited: ['Free (giới hạn)', ''],
+        no: ['Trả phí', ''],
+        unverified: ['Chưa xác minh', 'warn'],
+      };
+      const [label, cls] = map[t.freeTier];
+      const el = document.createElement('span');
+      el.className = `badge ${cls}`;
+      el.textContent = label + (t.offline ? ' · chạy offline' : '');
+      return el;
+    }
+
+    function card(t: Tool) {
+      const a = document.createElement('article');
+      a.className = 'card';
+      const h = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = t.url; link.target = '_blank'; link.rel = 'sponsored nofollow noopener'; link.textContent = t.name;
+      h.appendChild(link);
+      const p1 = document.createElement('p'); p1.textContent = t.descriptionVi;
+      const p2 = document.createElement('p'); p2.className = 'meta'; p2.textContent = 'Phù hợp: ' + (t.bestForVi ?? '—');
+      const p3 = document.createElement('p'); p3.className = 'meta'; p3.textContent = t.limitationsVi;
+      const p4 = document.createElement('p'); p4.className = 'meta small'; p4.textContent = `Kiểm tra lần cuối: ${t.lastChecked}`;
+      a.append(badge(t), h, p1, p2, p3, p4);
+      return a;
+    }
+
+    render();
+  </script>
+</Base>
+
+<style>
+  .filters { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+  .filters input { max-width: 28rem; padding: 0.55rem 0.8rem; font-size: 1rem; border: 1px solid var(--border); border-radius: 8px; }
+  .chip-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .chip-row button {
+    border: 1px solid var(--border); background: #fff; padding: 0.35rem 0.8rem; border-radius: 999px;
+    cursor: pointer; font-size: 0.9rem;
+  }
+  .chip-row button[aria-pressed='true'] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .meta { font-size: 0.85rem; color: var(--muted); }
+  .meta.small { font-size: 0.75rem; }
+</style>

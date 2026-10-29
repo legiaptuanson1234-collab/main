@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import toolsData from '../data/tools.json';
+import type { Tool } from '../types';
+
+const tools = toolsData as unknown as Tool[];
+const sample = tools.filter((t) => t.freeTier === 'yes' || t.freeTier === 'limited').slice(0, 6);
+---
+<Base title="Sổ Tay AI — dùng AI miễn phí, không cần thẻ, cho người mới">
+  <section class="page hero">
+    <div class="hero-copy">
+      <h1>Không cần tiền. Không cần thẻ. Chỉ cần 10 phút để dùng AI thật.</h1>
+      <p>
+        <strong>Sổ Tay AI</strong> giúp bạn chọn đúng công cụ AI <em>miễn phí thật</em> (không phải "free trial" tự động trừ tiền),
+        rồi bắt đầu làm được việc ngay — viết lách, tra cứu, học tập, code, làm ảnh.
+      </p>
+      <div class="actions">
+        <a class="primary" href="/tools/">Xem danh bạ công cụ</a>
+        <a href="/guides/">Đọc hướng dẫn</a>
+      </div>
+      <p class="note">
+        Mọi công cụ trong danh bạ đều ghi rõ <strong>ngày kiểm tra</strong> và <strong>giới hạn của bản free</strong>.
+        Chúng tôi không bịa con số; chỗ chưa xác minh được sẽ ghi thẳng "chưa xác minh".
+      </p>
+    </div>
+  </section>
+
+  <section class="page" aria-labelledby="popular">
+    <h2 id="popular">Công cụ phổ biến, dùng được ngay</h2>
+    <div class="grid">
+      {sample.map((t) => (
+        <article class="card">
+          <h3><a href={t.url} rel="sponsored nofollow noopener" target="_blank">{t.name}</a></h3>
+          <span class="badge {t.freeTier === 'yes' ? 'ok' : t.freeTier === 'unverified' ? 'warn' : ''}">
+            {t.freeTier === 'yes' ? 'Miễn phí' : t.freeTier === 'limited' ? 'Free (có giới hạn)' : t.freeTier === 'no' ? 'Trả phí' : 'Chưa xác minh'}
+          </span>
+          <p>{t.descriptionVi}</p>
+          <p class="meta">Phù hợp: {t.bestForVi}</p>
+        </article>
+      ))}
+    </div>
+    <p><a href="/tools/">→ Xem toàn bộ {tools.length} công cụ và bộ lọc</a></p>
+  </section>
+
+  <section class="page" aria-labelledby="why">
+    <h2 id="why">Vì sao nên đọc các hướng dẫn ở đây trước?</h2>
+    <div class="prose">
+      <p>Nhiều người bị "ngâm" ở bước đầu: không biết cái nào thực sự miễn phí, cái nào chỉ miễn phí cho đến khi tự động trừ tiền, và bắt đầu bằng prompt kiểu gì để ra kết quả dùng được.</p>
+      <p>Các bài hướng dẫn ở mục <a href="/guides/">Hướng dẫn</a> được viết để bạn <strong>làm được ngay</strong>: mở đúng link, đăng nhập đúng cách, và tạo ra 1 kết quả cụ thể (1 bài viết, 1 bảng so sánh, 1 bộ slide…) trước khi lo chuyện chi trả. Khi nào cần mở rộng, chúng tôi mới gợi ý gói trả phí — và chỉ khi nào phù hợp với bạn.</p>
+      <p>Mọi phương án tạo doanh thu của site (nếu có sau này, ví dụ affiliate) được <a href="/affiliates/">công khai tại đây</a>.</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .hero { padding-top: 1rem; }
+  .hero-copy { max-width: 42rem; }
+  .hero h1 { font-size: 2.2rem; }
+</style>

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "keywords": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "topic": {
+      "default": "ai-mien-phi",
+      "type": "string"
+    },
+    "status": {
+      "default": "published",
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ]
+    },
+    "aiLabel": {
+      "default": "human",
+      "type": "string",
+      "enum": [
+        "human",
+        "ai-assisted",
+        "ai-generated"
+      ]
+    },
+    "sources": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "url"
+        ]
+      }
+    },
+    "lastVerified": {
+      "default": "",
+      "type": "string"
+    },
+    "verificationNote": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "createdAt"
+  ]
+}

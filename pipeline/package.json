@@ -1,0 +1,10 @@
+{
+  "name": "pipeline",
+  "type": "module",
+  "private": true,
+  "description": "Pipeline tạo nội dung AI cục bộ (Ollama) cho website Sổ Tay AI",
+  "scripts": {
+    "run": "node src/cli.ts",
+    "topics": "node src/cli.ts --list-topics"
+  }
+}

@@ -1,0 +1,15 @@
+import { readFileSync } from 'node:fs';
+const base = 'E:/KIEMTIEN/website/dist/';
+const p1 = readFileSync(base + 'index.html', 'utf8');
+console.log('H1 trang chủ OK:', p1.includes('Không cần tiền. Không cần thẻ'));
+const p2 = readFileSync(base + 'guides/index.html', 'utf8');
+console.log('Số article ở /guides/:', (p2.match(/<article class="card"/g) || []).length);
+console.log('Có link bài 10 phút:', p2.includes('cach-dung-ai-mien-phi-trong-10-phut'));
+const p3 = readFileSync(base + 'tools/index.html', 'utf8');
+console.log('Tools có data nhúng (__data__):', p3.includes('__data__'));
+console.log('Số "name" trong data nhúng (≈ số công cụ):', (p3.match(/"name":/g) || []).length);
+const p4 = readFileSync(base + 'guides/cach-dung-ai-mien-phi-trong-10-phut/index.html', 'utf8');
+console.log('Guide UTF-8 đúng:', p4.includes('Cách dùng AI miễn phí trong 10 phút'));
+const p5 = readFileSync(base + 'guides/feed.xml', 'utf8');
+console.log('RSS số item:', (p5.match(/<item>/g) || []).length);
+console.log('robots.txt đúng:', readFileSync(base + 'robots.txt', 'utf8').includes('/data/'));

@@ -1,0 +1,34 @@
+# --- Dependencies / build ---
+node_modules/
+website/dist/
+**/node_modules/
+
+# --- Secret & env thật (không bao giờ commit .env chứa giá trị thật) ---
+.env
+website/.env
+!.env.example
+!website/.env.example
+
+# --- Ollama runtime (model, home directory — nặng, không thuộc mã nguồn) ---
+tools/ollama/models/
+tools/ollama/server.log
+tools/ollama/server.err
+tools/ollama/ollama.zip
+tools/ollama/lib/
+
+# --- Pipeline runtime ---
+pipeline/.lock
+pipeline/logs/
+pipeline/drafts/
+
+# --- OS / IDE ---
+Thumbs.db
+Desktop.ini
+.vs/
+.vscode/
+*.log
+preview.log
+preview.err
+
+# --- Agnes work files ---
+.agnes/

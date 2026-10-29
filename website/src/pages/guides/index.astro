@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import GuideCard from '../../components/GuideCard.astro';
+
+const guides = (await getCollection('guides', (g) => g.data.status === 'published')).sort((a, b) =>
+  b.data.lastVerified.localeCompare(a.data.lastVerified)
+);
+---
+<Base
+  title="Hướng dẫn dùng AI miễn phí — Sổ Tay AI"
+  description="Mỗi hướng dẫn đi thẳng vào việc làm được ngay: dùng AI, so sánh công cụ, tự chạy model trên máy. Có nguồn, có kiểm chứng, không bịa số liệu."
+>
+  <section class="page guides">
+    <div class="intro prose">
+      <h1>Hướng dẫn — làm được ngay</h1>
+      <p>
+        Các bài viết này được viết theo <strong>nguyên tắc "không bịa" của Sổ Tay AI</strong>:
+        mỗi tuyên bố quan trọng có nguồn, có ngày kiểm chứng, và ghi rõ đâu là phần
+        <em>cần bạn tự xác minh lại</em>. Nội dung do AI hỗ trợ và người biên tập kiểm tra trước khi xuất bản.
+      </p>
+      <p class="note">
+        Hiện có <strong>{guides.length}</strong> hướng dẫn đã xuất bản. Nội dung mới được thêm theo định kỳ.
+      </p>
+    </div>
+
+    <div class="grid">
+      {guides.map((g) => <GuideCard guide={g} />)}
+    </div>
+
+    {guides.length === 0 && (
+      <div class="empty-state">
+        <h2>Chưa có hướng dẫn nào</h2>
+        <p>Đội ngũ đang viết các bài đầu tiên. Quay lại sau.</p>
+      </div>
+    )}
+  </section>
+</Base>
+
+<style>
+  .guides .intro { margin-bottom: 2rem; }
+  .empty-state { padding: 2rem 0; }
+</style>

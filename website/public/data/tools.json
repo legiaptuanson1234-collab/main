@@ -1,0 +1,249 @@
+[
+  {
+    "name": "ChatGPT (GPT-4o mini)",
+    "url": "https://chat.openai.com",
+    "category": "chat",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Chatbot phổ biến nhất, dùng được miễn phí bằng tài khoản (email). Phiên bản miễn phí bị giới hạn số lần dùng model mới nhất trong ngày.",
+    "bestForVi": "Hỏi đáp, viết văn bản, tóm tắt, code cơ bản",
+    "limitationsVi": "Có giới hạn lượt dùng mỗi ngày ở chế độ free; chính sách có thể thay đổi.",
+    "lastChecked": "2026-10-29"
+  },
+  {
+    "name": "Google Gemini",
+    "url": "https://gemini.google.com",
+    "category": "chat",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Trợ lý AI của Google, miễn phí với tài khoản Google. Tích hợp tốt với tài liệu và ảnh.",
+    "limitationsVi": "Giới hạn lượt dùng model mới nhất mỗi ngày ở chế độ free.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Tóm tắt văn bản dài, phân tích hình ảnh, viết nội dung"
+  },
+  {
+    "name": "Microsoft Copilot",
+    "url": "https://copilot.microsoft.com",
+    "category": "chat",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Trợ lý AI miễn phí của Microsoft, dùng tài khoản Microsoft. Có chế độ 'Free' dùng model do Microsoft vận hành.",
+    "limitationsVi": "Chức năng AI cao cấp (GPT-4o) có giới hạn lượt/ngày ở chế độ free.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Người đã dùng hệ sinh thái Microsoft (Outlook, Office)"
+  },
+  {
+    "name": "Perplexity",
+    "url": "https://www.perplexity.ai",
+    "category": "search",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en"
+    ],
+    "descriptionVi": "Công cụ tìm kiếm bằng AI: trả lời kèm trích dẫn nguồn. Miễn phí cho số lượng truy vấn nhất định mỗi ngày.",
+    "limitationsVi": "Truy vấn/ngày bị giới hạn ở chế độ free; chủ yếu tiếng Anh.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Tra cứu nhanh có nguồn rõ ràng, học tập, làm bài"
+  },
+  {
+    "name": "Kimi (Moonshot AI)",
+    "url": "https://kimi.moonshot.cn",
+    "category": "chat",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "zh",
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Chatbot miễn phí từ Trung Quốc, mạnh về xử lý văn bản dài (PDF, tài liệu hàng trăm trang).",
+    "limitationsVi": "Giao diện chính bằng tiếng Trung; cần kiểm tra khả năng truy cập từ Việt Nam.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Đọc và tóm tắt tài liệu dài bằng tiếng Việt/Trung/Anh"
+  },
+  {
+    "name": "DeepSeek",
+    "url": "https://chat.deepseek.com",
+    "category": "chat",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "zh",
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Chatbot mã mở của Trung Quốc, miễn phí, mạnh về toán học và lập trình. Có web app và app di động.",
+    "limitationsVi": "Giao dịch ngôn ngữ chính là tiếng Trung/Anh; độ ổn định có thể thay đổi theo tải server.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Lập trình, toán học, lập kế hoạch"
+  },
+  {
+    "name": "Claude (free tier)",
+    "url": "https://claude.ai",
+    "category": "chat",
+    "freeTier": "limited",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Chatbot của Anthropic, chất lượng viết tự nhiên cao. Có chế độ free giới hạn lượt dùng model mới nhất mỗi ngày.",
+    "limitationsVi": "Giới hạn khá chặt ở chế độ free; không phải lúc nào cũng truy cập ổn định từ Việt Nam.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Viết sáng tạo, biên tập, lập luận dài"
+  },
+  {
+    "name": "NotebookLM",
+    "url": "https://notebooklm.google.com",
+    "category": "writing",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Công cụ của Google để học từ chính tài liệu của bạn: upload PDF/ghi chú, đặt câu hỏi, tạo bản ghi âm tổng hợp (audio overview).",
+    "limitationsVi": "Số notebook và upload bị giới hạn ở chế độ free.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Học sinh/sinh viên ôn thi từ giáo trình, nghiên cứu từ nhiều nguồn"
+  },
+  {
+    "name": "Canva (free)",
+    "url": "https://www.canva.com",
+    "category": "image",
+    "freeTier": "limited",
+    "noCreditCard": true,
+    "languages": [
+      "en",
+      "vi"
+    ],
+    "descriptionVi": "Thiết kế ảnh/màn hình/tiểu luận nhanh với hàng nghìn mẫu miễn phí. AI image (Magic Media) có lượt dùng free mỗi ngày.",
+    "limitationsVi": "Nhiều mẫu cao cấp bị khóa; yếu tố thương mại không dùng được ở bản free.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Làm slide, poster, hình đăng mạng xã hội"
+  },
+  {
+    "name": "Flux / Google Imagen (qua các nền tảng)",
+    "url": "https://labs.google",
+    "category": "image",
+    "freeTier": "unverified",
+    "noCreditCard": true,
+    "descriptionVi": "Sinh ảnh từ mô tả. Google Labs (Stable Diffusion Imagen) miễn phí trong giai đoạn mở rộng; các model khác (Flux…) thường có quota nhỏ.",
+    "limitationsVi": "Trạng thái miễn phí CHƯA XÁC MINH đầy đủ — kiểm tra trực tiếp link trước khi dùng.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Sinh hình minh hoạ, concept art"
+  },
+  {
+    "name": "Hugging Face Spaces",
+    "url": "https://huggingface.co/spaces",
+    "category": "other",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "descriptionVi": "Hàng nghìn ứng dụng AI demo miễn phí: sinh ảnh, giọng nói, video ngắn, tool code. Không cần cài đặt.",
+    "limitationsVi": "Một số demo chạy chậm do chia sẻ GPU; chất lượng không ổn định.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Thử nhiều loại AI khác nhau trong 1 nơi"
+  },
+  {
+    "name": "GitHub Copilot (free tier)",
+    "url": "https://github.com/features/copilot",
+    "category": "code",
+    "freeTier": "limited",
+    "noCreditCard": true,
+    "languages": [
+      "en"
+    ],
+    "descriptionVi": "Trợ lý code trong IDE (VS Code, IntelliJ…). Có gói free với số lượt hoàn thành code nhất định mỗi tháng.",
+    "limitationsVi": "Yêu cầu tài khoản GitHub; lượt free bị giới hạn theo tháng.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Lập trình viên muốn code nhanh hơn"
+  },
+  {
+    "name": "Ollama (chạy trên máy bạn)",
+    "url": "https://ollama.com",
+    "category": "other",
+    "offline": true,
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "languages": [
+      "en"
+    ],
+    "descriptionVi": "Chạy model ngôn ngữ mã nguồn mở TRÊN MÁY CỦA BẠN — không cần internet, không tài khoản, không giới hạn lượt. Cần máy có 8–16GB RAM (hoặc GPU).",
+    "limitationsVi": "Chất lượng thấp hơn các dịch vụ lớn; máy yếu sẽ chạy chậm; model chiếm dung lượng ổ đĩa.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Người muốn AI hoàn toàn riêng tư, dùng offline, không bị giới hạn"
+  },
+  {
+    "name": "LM Studio",
+    "url": "https://lmstudio.ai",
+    "category": "other",
+    "offline": true,
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "descriptionVi": "Giao diện tải và chạy model mã nguồn mở (LLM) trên máy Windows/Mac/Linux, kèm server địa phương cho các ứng dụng khác.",
+    "limitationsVi": "Tương tự Ollama: phụ thuộc phần cứng, chất lượng theo model tải về.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Người muốn chạy AI local mà không dùng dòng lệnh"
+  },
+  {
+    "name": "TTS (ElevenLabs free tier)",
+    "url": "https://elevenlabs.io",
+    "category": "audio",
+    "freeTier": "limited",
+    "noCreditCard": true,
+    "descriptionVi": "Chuyển chữ thành giọng nói tự nhiên, nhiều ngôn ngữ. Gói free cho ~10 phút phát/generation mỗi tháng.",
+    "limitationsVi": "Quota free nhỏ; ghi nhớ khi dùng thương mại phải xem điều khoản hiện hành.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Làm audio cho video, thư mục, thuyết minh"
+  },
+  {
+    "name": "Whisper (tự host hoặc qua web)",
+    "url": "https://github.com/openai/whisper",
+    "category": "audio",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "offline": true,
+    "descriptionVi": "Model chuyển phát âm thành chữ mã nguồn mở của OpenAI. Chạy trên máy local bằng thư viện Python, hoặc qua các dịch vụ web có gói free.",
+    "limitationsVi": "Chạy local cần cài Python; chất lượng theo phiên bản model chọn.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Chuyển ghi âm thành chữ để lấy lại nội dung"
+  },
+  {
+    "name": "Google Search + AI Overviews",
+    "url": "https://google.com",
+    "category": "search",
+    "freeTier": "yes",
+    "noCreditCard": true,
+    "descriptionVi": "Tìm kiếm Google hiện có phần trả lời do AI tạo (AI Overviews) ở một số truy vấn — miễn phí, không cần gì thêm.",
+    "limitationsVi": "Phải tự kiểm tra độ đúng; AI summary có thể sai.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Tra cứu nhanh thông dụng"
+  },
+  {
+    "name": "Kiki Info (Vietnam)",
+    "url": "https://kiki.info",
+    "category": "chat",
+    "freeTier": "unverified",
+    "noCreditCard": true,
+    "languages": [
+      "vi"
+    ],
+    "descriptionVi": "Nền tảng AI của Việt Nam (FPT), tích hợp Zalo, mạnh về thông tin hành chính/tình huống đời sống Việt Nam.",
+    "limitationsVi": "Trạng thái miễn phí và phạm vi CHƯA XÁC MINH — kiểm tra trực tiếp trước khi dùng.",
+    "lastChecked": "2026-10-29",
+    "bestForVi": "Người Việt muốn hỏi bằng tiếng Việt, đặc biệt thủ tục hành chính"
+  }
+]
