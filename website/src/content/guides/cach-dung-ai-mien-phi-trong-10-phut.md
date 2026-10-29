@@ -16,8 +16,6 @@ verificationNote: "Trạng thái miễn phí của từng công cụ thay đổi
 createdAt: "2026-10-29"
 ---
 
-# Cách dùng AI miễn phí trong 10 phút
-
 Bạn không cần thẻ tín dụng, không cần hiểu thuật toán, và không cần mua gói bất kỳ nào. Bài này đi thẳng vào 3 bước: **chọn đúng công cụ cho mục đích của bạn → tạo tài khoản free → tạo ra 1 kết quả cụ thể**.
 
 ## Bước 1 — Chọn 1 công cụ theo mục đích (5 phút)

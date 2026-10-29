@@ -19,8 +19,6 @@ verificationNote: "Trải nghiệm và giới hạn free thay đổi theo thời
 createdAt: "2026-10-29"
 ---
 
-# So sánh ChatGPT, Gemini, Copilot ở chế độ free
-
 Ba trợ lý này đều **dùng được miễn phí không cần thẻ**, nhưng "miễn phí" của mỗi nhà khác nhau. Bài này không so theo tiêu chí marketing mà theo câu hỏi duy nhất: **với tiền 0đ, cái nào làm được việc cho bạn?**
 
 ## Cùng tiền 0đ, khác nhau ở đâu?

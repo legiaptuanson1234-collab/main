@@ -39,17 +39,17 @@ const categories = [
   </section>
 
   <script type="module" define:vars={{ tools, categories }}>
-    const catEl = document.getElementById('cats')!;
-    const qEl = document.getElementById('q') as HTMLInputElement;
-    const grid = document.getElementById('grid')!;
-    const empty = document.getElementById('empty')!;
-    const count = document.getElementById('result-count')!;
-    const totalEl = document.getElementById('total-count')!;
+    const catEl = document.getElementById('cats');
+    const qEl = document.getElementById('q');
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const count = document.getElementById('result-count');
+    const totalEl = document.getElementById('total-count');
     totalEl.textContent = String(tools.length);
 
     let activeCat = 'all';
 
-    categories.forEach((c: { id: string; label: string }) => {
+    categories.forEach((c) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = c.label;
@@ -58,7 +58,7 @@ const categories = [
       b.onclick = () => {
         activeCat = c.id;
         catEl.querySelectorAll('button').forEach((x) =>
-          (x as HTMLElement).setAttribute('aria-pressed', String(x.dataset.cat === c.id))
+          x.setAttribute('aria-pressed', String(x.dataset.cat === c.id))
         );
         render();
       };
@@ -66,51 +66,62 @@ const categories = [
     });
 
     qEl.addEventListener('input', render);
-    document.getElementById('reset')!.onclick = () => {
-      qEl.value = ''; activeCat = 'all';
-      catEl.querySelectorAll('button').forEach((x, i) => (x as HTMLElement).setAttribute('aria-pressed', String(i === 0)));
+    document.getElementById('reset').onclick = () => {
+      qEl.value = '';
+      activeCat = 'all';
+      catEl.querySelectorAll('button').forEach((x, i) => x.setAttribute('aria-pressed', String(i === 0)));
       render();
     };
 
     function render() {
       const q = qEl.value.trim().toLowerCase();
-      const items = tools.filter((t: Tool) => {
+      const items = tools.filter((t) => {
         const okCat = activeCat === 'all' || t.category === activeCat;
-        const hay = [t.name, t.descriptionVi, t.bestForVi ?? ''].join(' ').toLowerCase();
+        const hay = [t.name, t.descriptionVi, t.bestForVi || ''].join(' ').toLowerCase();
         return okCat && (!q || hay.includes(q));
       });
-      count.textContent = `${items.length} / ${tools.length} công cụ`;
+      count.textContent = items.length + ' / ' + tools.length + ' công cụ';
       grid.innerHTML = '';
-      items.forEach((t: Tool) => grid.appendChild(card(t)));
+      items.forEach((t) => grid.appendChild(card(t)));
       empty.hidden = items.length !== 0;
-      grid.toggleAttribute('hidden', items.length === 0);
+      if (items.length === 0) grid.hidden = true; else grid.hidden = false;
     }
 
-    function badge(t: Tool) {
-      const map: Record<string, [string, string]> = {
+    function badge(t) {
+      const map = {
         yes: ['Miễn phí', 'ok'],
         limited: ['Free (giới hạn)', ''],
         no: ['Trả phí', ''],
         unverified: ['Chưa xác minh', 'warn'],
       };
-      const [label, cls] = map[t.freeTier];
+      const entry = map[t.freeTier] || ['?', ''];
       const el = document.createElement('span');
-      el.className = `badge ${cls}`;
-      el.textContent = label + (t.offline ? ' · chạy offline' : '');
+      el.className = 'badge ' + entry[1];
+      el.textContent = entry[0] + (t.offline ? ' · chạy offline' : '');
       return el;
     }
 
-    function card(t: Tool) {
+    function card(t) {
       const a = document.createElement('article');
       a.className = 'card';
       const h = document.createElement('h3');
       const link = document.createElement('a');
-      link.href = t.url; link.target = '_blank'; link.rel = 'sponsored nofollow noopener'; link.textContent = t.name;
+      link.href = t.url;
+      link.target = '_blank';
+      link.rel = 'sponsored nofollow noopener';
+      link.textContent = t.name;
       h.appendChild(link);
-      const p1 = document.createElement('p'); p1.textContent = t.descriptionVi;
-      const p2 = document.createElement('p'); p2.className = 'meta'; p2.textContent = 'Phù hợp: ' + (t.bestForVi ?? '—');
-      const p3 = document.createElement('p'); p3.className = 'meta'; p3.textContent = t.limitationsVi;
-      const p4 = document.createElement('p'); p4.className = 'meta small'; p4.textContent = `Kiểm tra lần cuối: ${t.lastChecked}`;
+      const p1 = document.createElement('p');
+      p1.textContent = t.descriptionVi;
+      const p2 = document.createElement('p');
+      p2.className = 'meta';
+      p2.textContent = 'Phù hợp: ' + (t.bestForVi || '—');
+      const p3 = document.createElement('p');
+      p3.className = 'meta';
+      p3.textContent = t.limitationsVi;
+      const p4 = document.createElement('p');
+      p4.className = 'meta small';
+      p4.textContent = 'Kiểm tra lần cuối: ' + t.lastChecked;
       a.append(badge(t), h, p1, p2, p3, p4);
       return a;
     }

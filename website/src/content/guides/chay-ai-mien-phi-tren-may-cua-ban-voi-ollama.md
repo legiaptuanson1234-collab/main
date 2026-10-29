@@ -16,8 +16,6 @@ verificationNote: "Dung lượng model và khuyến nghị RAM/GPU thay đổi t
 createdAt: "2026-10-29"
 ---
 
-# Chạy AI miễn phí trên chính máy tính của bạn với Ollama
-
 Khi nào đáng bỏ công cài: bạn muốn AI **hoàn toàn offline, riêng tư, không giới hạn lượt**, và máy đủ mạnh. Nếu máy bạn dưới 8GB RAM, hãy xem hướng dẫn dùng AI web trước (mục trước) — phần sau chỉ dành cho máy "khá".
 
 ## Ollama là gì?

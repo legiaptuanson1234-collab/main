@@ -22,6 +22,8 @@ for (const f of tracked) {
   } catch {
     continue;
   }
+  // Bỏ qua file binary (NUL byte) — tránh false positive như binary ollama.exe
+  if (body.includes('\u0000')) continue;
   for (const [name, re] of patterns) {
     const m = body.match(re);
     if (m) {
